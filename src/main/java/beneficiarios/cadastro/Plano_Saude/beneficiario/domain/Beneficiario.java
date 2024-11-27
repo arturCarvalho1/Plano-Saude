@@ -33,4 +33,5 @@ public class Beneficiario {
         this.nome = nome;
         this.telefone = telefone;
     }
+
 }
