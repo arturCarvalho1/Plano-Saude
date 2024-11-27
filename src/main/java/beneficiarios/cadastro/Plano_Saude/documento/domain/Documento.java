@@ -10,8 +10,8 @@ import java.util.UUID;
 @Entity
 public class Documento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID idDocumento;
+    @Column(name = "idDocumento", unique = true, nullable = false, length = 36)
+    private String idDocumento;
     private String tipoDocumento;
     @NotBlank
     private String descricao;
@@ -28,7 +28,7 @@ public class Documento {
         this.dataAtualizacao = dataAtualizacao;
         this.dataInclusao = dataInclusao;
         this.descricao = descricao;
-        this.idDocumento = idDocumento;
+        this.idDocumento = UUID.randomUUID().toString();
         this.tipoDocumento = tipoDocumento;
     }
 }

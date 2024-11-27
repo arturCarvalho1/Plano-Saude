@@ -15,9 +15,8 @@ import java.util.UUID;
 @Entity
 public class Beneficiario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", updatable = false, unique = true, nullable = false)
-    private UUID idBeneficiario;
+    @Column(name = "idBeneficiario", unique = true, nullable = false, length = 36)
+    private String idBeneficiario;
     @NotBlank
     private String nome;
     private String telefone;
@@ -27,10 +26,11 @@ public class Beneficiario {
     private LocalDateTime dataInclusao;
     private LocalDateTime dataAtualizacao;
 
-    public Beneficiario(LocalDateTime dataAtualizacao, LocalDateTime dataInclusao, LocalDate dataNascimento, UUID idBeneficiario, String nome, String telefone) {
+    public Beneficiario(LocalDateTime dataAtualizacao, LocalDateTime dataInclusao, LocalDate dataNascimento, String idBeneficiario, String nome, String telefone) {
         this.dataAtualizacao = LocalDateTime.now();
         this.dataNascimento = dataNascimento;
         this.nome = nome;
+        this.idBeneficiario = UUID.randomUUID().toString();
         this.telefone = telefone;
     }
 
