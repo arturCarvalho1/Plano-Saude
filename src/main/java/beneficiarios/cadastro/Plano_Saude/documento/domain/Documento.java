@@ -3,11 +3,15 @@ package beneficiarios.cadastro.Plano_Saude.documento.domain;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 public class Documento {
     @Id
     @Column(name = "idDocumento", unique = true, nullable = false, length = 36)

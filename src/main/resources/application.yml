@@ -1,3 +1,5 @@
 server:
   servlet:
     context-path: /plano-saude/api
+
+    debug: true
