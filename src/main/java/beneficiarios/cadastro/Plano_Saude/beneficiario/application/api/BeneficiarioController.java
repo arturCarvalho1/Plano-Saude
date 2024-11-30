@@ -28,7 +28,8 @@ public class BeneficiarioController implements BeneficiarioAPI{
     @Override
     public List<BeneficiarioResponse> getTodosbeneficiarios() {
         log.info("[inicia] BeneficiarioController - getTodosbeneficiarios");
+        List<BeneficiarioResponse> beneficiarios = beneficiarioService.buscaTodosBeneficiarios();
         log.info("[finaliza] BeneficiarioController - getTodosbeneficiarios");
-        return null;
+        return beneficiarios;
     }
 }

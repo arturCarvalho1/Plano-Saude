@@ -5,7 +5,10 @@ import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.Beneficia
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface BeneficiarioService {
     BeneficiarioResponse criaBeneficiario(BeneficiarioRequest beneficiarioRequest);
+    List<BeneficiarioResponse> buscaTodosBeneficiarios();
 }
