@@ -1,5 +1,6 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.application.service;
 
+import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioListResponse;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioRequest;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioResponse;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.repository.BeneficiarioRepository;
@@ -30,7 +31,8 @@ public class BeneficiarioApplicationService implements BeneficiarioService{
     @Override
     public List<BeneficiarioResponse> buscaTodosBeneficiarios() {
         log.info("[inicia] BeneficiarioApplicationService - buscaTodosBeneficiarios ");
+        List<Beneficiario>  beneficiarios = beneficiarioRepository.listaTodosBeneficiarios();
         log.info("[finaliza] BeneficiarioApplicationService - buscaTodosBeneficiarios ");
-        return null;
+        return BeneficiarioListResponse.converte(beneficiarios);
     }
 }
