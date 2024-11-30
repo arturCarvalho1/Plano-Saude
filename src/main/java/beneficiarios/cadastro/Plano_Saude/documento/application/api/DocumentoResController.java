@@ -18,7 +18,8 @@ public class DocumentoResController implements DocumentoAPI{
     public DocumentoDetalhadoResponse getBeneficiarioAtravesId(Long idBeneficiario) {
         log.info("[inicia] DocumentoResController - getBeneficiarioAtravesId");
         log.info("[idBeneficiario] {}", idBeneficiario);
+        DocumentoDetalhadoResponse documentoDetalhado = documentoService.buscaDocumentoAtravesId(idBeneficiario);
         log.info("[finaliza] DocumentoResController - getBeneficiarioAtravesId");
-        return null;
+        return documentoDetalhado;
     }
 }
