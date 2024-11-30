@@ -29,7 +29,7 @@ public class BeneficiarioApplicationService implements BeneficiarioService{
     }
 
     @Override
-    public List<BeneficiarioResponse> buscaTodosBeneficiarios() {
+    public List<BeneficiarioListResponse> buscaTodosBeneficiarios() {
         log.info("[inicia] BeneficiarioApplicationService - buscaTodosBeneficiarios ");
         List<Beneficiario>  beneficiarios = beneficiarioRepository.listaTodosBeneficiarios();
         log.info("[finaliza] BeneficiarioApplicationService - buscaTodosBeneficiarios ");

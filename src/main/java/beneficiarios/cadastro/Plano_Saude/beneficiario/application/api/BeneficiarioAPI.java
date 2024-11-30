@@ -1,7 +1,5 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.application.api;
 
-import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
-import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,5 +16,5 @@ public interface BeneficiarioAPI {
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    List<BeneficiarioResponse> getTodosbeneficiarios();
+    List<BeneficiarioListResponse> getTodosbeneficiarios();
 }

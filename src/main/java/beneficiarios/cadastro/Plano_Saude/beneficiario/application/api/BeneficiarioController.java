@@ -1,9 +1,6 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.application.api;
 
-import beneficiarios.cadastro.Plano_Saude.beneficiario.application.repository.BeneficiarioRepository;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.service.BeneficiarioService;
-import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
-import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,9 +23,9 @@ public class BeneficiarioController implements BeneficiarioAPI{
     }
 
     @Override
-    public List<BeneficiarioResponse> getTodosbeneficiarios() {
+    public List<BeneficiarioListResponse> getTodosbeneficiarios() {
         log.info("[inicia] BeneficiarioController - getTodosbeneficiarios");
-        List<BeneficiarioResponse> beneficiarios = beneficiarioService.buscaTodosBeneficiarios();
+        List<BeneficiarioListResponse> beneficiarios = beneficiarioService.buscaTodosBeneficiarios();
         log.info("[finaliza] BeneficiarioController - getTodosbeneficiarios");
         return beneficiarios;
     }
