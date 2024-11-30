@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -23,7 +22,7 @@ public class Beneficiario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idBeneficiario", unique = true, nullable = false, length = 36)
-    private String idBeneficiario;
+    private Long idBeneficiario;
     @NotBlank
     private String nome;
     private String telefone;

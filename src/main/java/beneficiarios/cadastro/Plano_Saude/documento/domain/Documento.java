@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Documento {
     @Id
     @Column(name = "idDocumento", unique = true, nullable = false, length = 36)
-    private String idDocumento;
+    private Long idDocumento;
     private String tipoDocumento;
     @NotBlank
     private String descricao;
@@ -32,7 +32,7 @@ public class Documento {
         this.dataAtualizacao = dataAtualizacao;
         this.dataInclusao = dataInclusao;
         this.descricao = descricao;
-        this.idDocumento = UUID.randomUUID().toString();
+        this.idDocumento = UUID.randomUUID().node();
         this.tipoDocumento = tipoDocumento;
     }
 }

@@ -6,5 +6,5 @@ import lombok.Value;
 @Value
 @Builder
 public class BeneficiarioResponse {
-    private String idBeneficiario;
+    private Long idBeneficiario;
 }
