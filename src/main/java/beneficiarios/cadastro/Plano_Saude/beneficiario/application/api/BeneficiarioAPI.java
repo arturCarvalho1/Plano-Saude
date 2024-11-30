@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/beneficiario")
 public interface BeneficiarioAPI {
@@ -14,4 +16,7 @@ public interface BeneficiarioAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     BeneficiarioResponse cadastrarBeneficiario(@RequestBody @Valid BeneficiarioRequest beneficiarioRequest);
 
+    @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
+    List<BeneficiarioResponse> getTodosbeneficiarios();
 }
