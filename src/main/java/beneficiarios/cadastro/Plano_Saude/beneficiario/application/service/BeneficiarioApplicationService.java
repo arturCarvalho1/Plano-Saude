@@ -4,17 +4,24 @@ import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.Beneficia
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioResponse;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.repository.BeneficiarioRepository;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class BeneficiarioApplicationService implements BeneficiarioService{
-    @Override
+    private final BeneficiarioRepository beneficiarioRepository;
+
+   @Override
     public BeneficiarioResponse criaBeneficiario(BeneficiarioRequest beneficiarioRequest) {
        log.info("[inicia] BeneficiarioApplicationService - criaBeneficiario");
-        BeneficiarioRepository.salva(new Beneficiario(beneficiarioRequest))
+       Beneficiario beneficiario = beneficiarioRepository.salva(new Beneficiario(beneficiarioRequest));
        log.info("[finaliza] BeneficiarioApplicationService - criaBeneficiario");
-        return null;
+        return BeneficiarioResponse
+                .builder()
+                .idBeneficiario(beneficiario.getIdBeneficiario())
+                .build();
     }
 }

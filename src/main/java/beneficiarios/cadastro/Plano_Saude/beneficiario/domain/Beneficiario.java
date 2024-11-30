@@ -1,5 +1,6 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.domain;
 
+import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioRequest;
 import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -20,6 +21,7 @@ import java.util.UUID;
 @Entity
 public class Beneficiario {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idBeneficiario", unique = true, nullable = false, length = 36)
     private String idBeneficiario;
     @NotBlank
@@ -33,12 +35,10 @@ public class Beneficiario {
     private LocalDateTime dataInclusao;
     private LocalDateTime dataAtualizacao;
 
-    public Beneficiario(LocalDateTime dataAtualizacao, LocalDateTime dataInclusao, LocalDate dataNascimento, String idBeneficiario, String nome, String telefone) {
-        this.dataAtualizacao = LocalDateTime.now();
-        this.dataNascimento = dataNascimento;
-        this.nome = nome;
-        this.idBeneficiario = UUID.randomUUID().toString();
-        this.telefone = telefone;
-    }
-
+    public Beneficiario(BeneficiarioRequest beneficiarioRequest) {
+            this.dataAtualizacao = LocalDateTime.now();
+            this.dataNascimento = beneficiarioRequest.getDataNascimento();
+            this.nome = beneficiarioRequest.getNome();
+            this.telefone = beneficiarioRequest.getTelefone();
+        }
 }
