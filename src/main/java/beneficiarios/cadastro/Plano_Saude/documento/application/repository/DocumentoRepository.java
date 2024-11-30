@@ -1,4 +1,10 @@
 package beneficiarios.cadastro.Plano_Saude.documento.application.repository;
 
-public class DocumentoRepository {
+import beneficiarios.cadastro.Plano_Saude.documento.application.api.DocumentoListResponse;
+import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface DocumentoRepository {
 }
