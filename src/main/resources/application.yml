@@ -1,3 +1,14 @@
 server:
   servlet:
     context-path: /plano-saude/api
+
+    spring:
+      data:
+        mongodb:
+          authentication-database: admin
+          uri: ${MONGO_DB_URI:mongodb+srv://artur:MZgeOaLYhrz54pES@cluster0.rwfbm.mongodb.net/Cluster0?retryWrites=true&w=majority&appName=Cluster0}
+          auto-index-creation: true
+
+    springdoc:
+      swagger-ui:
+        path: /public/swagger
