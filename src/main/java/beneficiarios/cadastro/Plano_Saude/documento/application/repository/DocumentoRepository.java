@@ -2,9 +2,9 @@ package beneficiarios.cadastro.Plano_Saude.documento.application.repository;
 
 import beneficiarios.cadastro.Plano_Saude.documento.application.api.DocumentoListResponse;
 import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
+@Repository
 public interface DocumentoRepository {
+    Documento buscaAtravesId(Long idBeneficiario);
 }

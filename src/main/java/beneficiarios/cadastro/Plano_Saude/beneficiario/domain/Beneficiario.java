@@ -21,7 +21,7 @@ import java.util.List;
 public class Beneficiario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idBeneficiario", unique = true, nullable = false, length = 36)
+    @Column(columnDefinition = "long", name = "idBeneficiario", unique = true, nullable = false, length = 36)
     private Long idBeneficiario;
     @NotBlank
     private String nome;
