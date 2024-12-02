@@ -49,9 +49,10 @@ public class BeneficiarioController implements BeneficiarioAPI{
     }
 
     @Override
-    public void patchAtualizaBeneficiario(Long idBeneficiario, @Valid BeneficiarioAtualizacaoRequest beneficiarioAtualizacaoRequest) {
+    public void patchAlteraBeneficiario(Long idBeneficiario, @Valid BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
         log.info("[inicia] BeneficiarioController - patchAtualizaBeneficiario");
         log.info("[idBeneficiario] {}", idBeneficiario);
+        beneficiarioService.patchAlteraBeneficiario(idBeneficiario,beneficiarioAlteracaoRequest);
         log.info("[finaliza] BeneficiarioController - patchAtualizaBeneficiario");
 
     }

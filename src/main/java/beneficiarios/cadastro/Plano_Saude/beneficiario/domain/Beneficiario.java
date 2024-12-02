@@ -1,5 +1,6 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.domain;
 
+import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioAlteracaoRequest;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioRequest;
 import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
 import jakarta.persistence.*;
@@ -32,11 +33,12 @@ public class Beneficiario {
     @OneToMany(mappedBy = "beneficiario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Documento> documentos = new ArrayList<>();
 
+    private Timestamp dataAlteracao;
     private Timestamp dataInclusao;
     private Timestamp dataAtualizacao;
 
     public Beneficiario(BeneficiarioRequest beneficiarioRequest) {
-        this.dataAtualizacao = Timestamp.valueOf(LocalDateTime.now());
+        this.dataAlteracao = Timestamp.valueOf(LocalDateTime.now());
         this.dataInclusao = Timestamp.valueOf(LocalDateTime.now());
         this.dataNascimento = beneficiarioRequest.getDataNascimento();
         this.nome = beneficiarioRequest.getNome();
@@ -45,5 +47,14 @@ public class Beneficiario {
 
     public void adicionarDocumento(Documento documento) {
         this.documentos.add(documento);
+    }
+
+    public void altera(BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequestRequest) {
+        this.dataAtualizacao = Timestamp.valueOf(LocalDateTime.now());
+        this.dataInclusao = Timestamp.valueOf(LocalDateTime.now());
+        this.dataNascimento = beneficiarioAlteracaoRequestRequest.getDataNascimento();
+        this.nome = beneficiarioAlteracaoRequestRequest.getNome();
+        this.telefone = beneficiarioAlteracaoRequestRequest.getTelefone();
+
     }
 }
