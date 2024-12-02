@@ -10,9 +10,9 @@ import java.util.List;
 @RequestMapping("/v1/documento")
 public interface DocumentoAPI {
 
-    @GetMapping(value = "/{idBeneficiario}")
-    @ResponseStatus(code = HttpStatus.OK)
-    DocumentoDetalhadoResponse getBeneficiarioAtravesId(@PathVariable Long idBeneficiario);
+        @GetMapping(value = "/{idBeneficiario}")
+        @ResponseStatus(HttpStatus.OK)
+        DocumentoDetalhadoResponse getBeneficiarioById(@PathVariable Long idBeneficiario);
 
 }
 

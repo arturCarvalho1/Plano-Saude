@@ -1,6 +1,7 @@
 package beneficiarios.cadastro.Plano_Saude.documento.domain;
 
 import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
+import beneficiarios.cadastro.Plano_Saude.documento.application.api.DocumentoRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -11,10 +12,10 @@ import java.util.UUID;
 
 @Entity
 @Getter
-@Setter
 public class Documento {
     @Id
-    @Column(name = "idDocumento", unique = true, nullable = false, length = 36)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idDocumento", unique = true, nullable = false)
     private Long idDocumento;
     private String tipoDocumento;
     @NotBlank
@@ -23,16 +24,25 @@ public class Documento {
     private LocalDateTime dataInclusao;
     private LocalDateTime dataAtualizacao;
 
+    @Setter
     @ManyToOne
-    @JoinColumn(name = "idBeneficiario")
+    @JoinColumn(name = "idBeneficiario", nullable = false)
     private Beneficiario beneficiario;
 
-    public Documento(Beneficiario beneficiario, LocalDateTime dataAtualizacao, LocalDateTime dataInclusao, String descricao, UUID idDocumento, String tipoDocumento) {
-        this.beneficiario = beneficiario;
-        this.dataAtualizacao = dataAtualizacao;
-        this.dataInclusao = dataInclusao;
-        this.descricao = descricao;
-        this.idDocumento = UUID.randomUUID().node();
-        this.tipoDocumento = tipoDocumento;
+    public Documento() {
+    }
+    public Documento(DocumentoRequest documentoRequest) {
+        this.beneficiario = documentoRequest.getBeneficiario();
+        this.descricao = documentoRequest.getDescricao();
+        this.tipoDocumento = documentoRequest.getTipoDocumento();
+    }
+    @PrePersist
+    public void prePersist() {
+        this.dataInclusao = LocalDateTime.now();
+        this.dataAtualizacao = LocalDateTime.now();
+    }
+    @PreUpdate
+    public void preUpdate() {
+        this.dataAtualizacao = LocalDateTime.now();
     }
 }

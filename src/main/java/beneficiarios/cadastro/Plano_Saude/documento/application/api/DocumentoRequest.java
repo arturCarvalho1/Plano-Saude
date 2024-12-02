@@ -1,9 +1,16 @@
 package beneficiarios.cadastro.Plano_Saude.documento.application.api;
 
+import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Value;
 
 @Value
 public class DocumentoRequest {
-    private Long idDocumento;
-    private String tipoDocumento;
+    Long idDocumento;
+    String tipoDocumento;
+
+    Beneficiario beneficiario;
+
+    @NotBlank
+    String descricao;
 }

@@ -1,10 +1,11 @@
 package beneficiarios.cadastro.Plano_Saude.documento.application.api;
 
 import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
+import lombok.Value;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Value
 public class DocumentoDetalhadoResponse {
     private Long idBeneficiario;
     private LocalDateTime dataInclusao;

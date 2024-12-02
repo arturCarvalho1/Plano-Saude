@@ -1,25 +1,23 @@
 package beneficiarios.cadastro.Plano_Saude.documento.application.api;
 
 import beneficiarios.cadastro.Plano_Saude.documento.application.service.DocumentoService;
-import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-public class DocumentoResController implements DocumentoAPI{
+public class DocumentoRestController implements DocumentoAPI{
     private final DocumentoService documentoService;
 
     @Override
-    public DocumentoDetalhadoResponse getBeneficiarioAtravesId(Long idBeneficiario) {
-        log.info("[inicia] DocumentoResController - getBeneficiarioAtravesId");
+    public DocumentoDetalhadoResponse getBeneficiarioById(Long idBeneficiario) {
+        log.info("[inicia] DocumentoResController - getBeneficiarioById");
         log.info("[idBeneficiario] {}", idBeneficiario);
-        DocumentoDetalhadoResponse documentoDetalhado = documentoService.buscaDocumentoAtravesId(idBeneficiario);
-        log.info("[finaliza] DocumentoResController - getBeneficiarioAtravesId");
+        DocumentoDetalhadoResponse documentoDetalhado = documentoService.buscaDocumentoById(idBeneficiario);
+        log.info("[finaliza] DocumentoResController - getBeneficiarioById");
         return documentoDetalhado;
     }
 }

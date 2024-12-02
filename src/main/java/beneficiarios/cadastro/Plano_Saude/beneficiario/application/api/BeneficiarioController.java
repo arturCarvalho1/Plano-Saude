@@ -16,7 +16,6 @@ public class BeneficiarioController implements BeneficiarioAPI{
     @Override
     public BeneficiarioResponse cadastrarBeneficiario(BeneficiarioRequest beneficiarioRequest) {
         log.info("[inicia] BeneficiarioController - cadastrarBeneficiario");
-        // Lógica para salvar o beneficiário e seus documentos
         BeneficiarioResponse beneficiarioCriado = beneficiarioService.criaBeneficiario(beneficiarioRequest);
         log.info("[finaliza] BeneficiarioController - cadastrarBeneficiario");
         return beneficiarioCriado;

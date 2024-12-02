@@ -13,15 +13,13 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @RequiredArgsConstructor
 public class DocumentoApplicationService implements DocumentoService{
-    @Autowired
-    private DocumentoRepository documentoRepository;
+    private final DocumentoRepository documentoRepository;
 
     @Override
-    public DocumentoDetalhadoResponse buscaDocumentoAtravesId(Long idBeneficiario) {
-        log.info("[inica] DocumentoApplicationService - buscaDocumentoAtravesId");
-        Documento documento = documentoRepository.buscaAtravesId(idBeneficiario);
-        log.info("[finaliza] DocumentoApplicationService - buscaDocumentoAtravesId");
-        DocumentoDetalhadoResponse documentoDetalhadoResponse = new DocumentoDetalhadoResponse(documento);
-        return documentoDetalhadoResponse;
+    public DocumentoDetalhadoResponse buscaDocumentoById(Long idBeneficiario) {
+        log.info("[inicia] DocumentoApplicationService - buscaDocumentoById");
+        Documento documento = documentoRepository.buscaDocumentoAtravesIdBeneficiario(idBeneficiario);
+        log.info("[finaliza] DocumentoApplicationService - buscaDocumentoById");
+        return new DocumentoDetalhadoResponse(documento);
     }
 }

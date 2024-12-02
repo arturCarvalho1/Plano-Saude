@@ -5,30 +5,45 @@ import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.Beneficia
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioResponse;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.repository.BeneficiarioRepository;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
+import beneficiarios.cadastro.Plano_Saude.documento.application.repository.DocumentoRepository;
+import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class BeneficiarioApplicationService implements BeneficiarioService{
+public class BeneficiarioApplicationService implements BeneficiarioService {
     private final BeneficiarioRepository beneficiarioRepository;
+    private final DocumentoRepository documentoRepository;
 
-   @Override
+
+    @Override
+    @Transactional
     public BeneficiarioResponse criaBeneficiario(BeneficiarioRequest beneficiarioRequest) {
-       log.info("[inicia] BeneficiarioApplicationService - criaBeneficiario");
-       Beneficiario beneficiario = beneficiarioRepository.salva(new Beneficiario(beneficiarioRequest));
-       log.info("[finaliza] BeneficiarioApplicationService - criaBeneficiario");
-        return BeneficiarioResponse
-                .builder()
-                .idBeneficiario(beneficiario.getIdBeneficiario())
+        log.info("[inicia] BeneficiarioApplicationService - criaBeneficiario");
+        // Criando e salvando o beneficiário
+        Beneficiario beneficiario = new Beneficiario(beneficiarioRequest);
+        beneficiario.setDataInclusao(Timestamp.valueOf(LocalDateTime.now()));
+        beneficiario.setDataAtualizacao(Timestamp.valueOf(LocalDateTime.now()));
+        Beneficiario beneficiarioSalvo = beneficiarioRepository.salva(beneficiario);
+        // Verificando se existe um documento e associando ao beneficiário
+        if (beneficiarioRequest.getDocumentoRequest() != null) {
+            Documento documento = new Documento(beneficiarioRequest.getDocumentoRequest());
+            documento.setBeneficiario(beneficiarioSalvo);  // Associação do beneficiário com documento
+            documentoRepository.salva(documento);
+        }
+        log.info("[finaliza] BeneficiarioApplicationService - criaBeneficiario");
+        return BeneficiarioResponse.builder()
+                .idBeneficiario(beneficiarioSalvo.getIdBeneficiario())
                 .build();
     }
-
     @Override
     public List<BeneficiarioListResponse> buscaTodosBeneficiarios() {
         log.info("[inicia] BeneficiarioApplicationService - buscaTodosBeneficiarios ");

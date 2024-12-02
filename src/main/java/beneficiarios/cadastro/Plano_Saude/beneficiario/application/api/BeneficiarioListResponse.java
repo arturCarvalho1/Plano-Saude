@@ -3,8 +3,8 @@ package beneficiarios.cadastro.Plano_Saude.beneficiario.application.api;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
 import lombok.Value;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +14,7 @@ public class BeneficiarioListResponse {
     private String nome;
     private String telefone;
     private LocalDate dataNascimento;
-    private LocalDateTime dataInclusao;
+    private Timestamp dataInclusao;
 
     public static List<BeneficiarioListResponse> converte(List<Beneficiario> beneficiarios) {
         return beneficiarios.stream()

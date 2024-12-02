@@ -8,5 +8,5 @@ import java.util.List;
 
 @Service
 public interface DocumentoService {
-    DocumentoDetalhadoResponse buscaDocumentoAtravesId(Long idBeneficiario);
+    DocumentoDetalhadoResponse buscaDocumentoById(Long idBeneficiario);
 }
