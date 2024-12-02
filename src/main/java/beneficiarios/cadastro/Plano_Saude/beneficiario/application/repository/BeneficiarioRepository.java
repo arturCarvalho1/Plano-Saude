@@ -7,4 +7,5 @@ import java.util.List;
 public interface BeneficiarioRepository{
     Beneficiario salva(Beneficiario beneficiario);
     List<Beneficiario> listaTodosBeneficiarios();
+    Beneficiario buscaBeneficiarioAtravesId(Long idBeneficiario);
 }

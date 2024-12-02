@@ -1,5 +1,6 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.application.service;
 
+import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioDetalhadoResponse;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioListResponse;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioRequest;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioResponse;
@@ -51,11 +52,17 @@ public class BeneficiarioApplicationService implements BeneficiarioService {
         log.info("[finaliza] BeneficiarioApplicationService - buscaTodosBeneficiarios ");
         return BeneficiarioListResponse.converte(beneficiarios);
     }
-
+    @Override
+    public BeneficiarioDetalhadoResponse buscaBeneficiariosAtravesId(Long idBeneficiario) {
+        log.info("[inicia] BeneficiarioApplicationService - buscaBeneficiariosAtravesId");
+        Beneficiario beneficiario = beneficiarioRepository.buscaBeneficiarioAtravesId(idBeneficiario);
+        log.info("[finaliza] BeneficiarioApplicationService - buscaBeneficiariosAtravesId");
+        return new BeneficiarioDetalhadoResponse(beneficiario);
+    }
     @Override
     public void deletaBeneficiarioById(Long idBeneficiario) {
         log.info("[inicia] BeneficiarioApplicationService - deletaBeneficiarioById");
-//        beneficiarioRepository.deletaBeneficiario(idBeneficiario);
+        log.info("[idBeneficiario] {}", idBeneficiario);
         log.info("[finaliza] BeneficiarioApplicationService - deletaBeneficiarioById");
 
     }

@@ -30,6 +30,15 @@ public class BeneficiarioController implements BeneficiarioAPI{
     }
 
     @Override
+    public BeneficiarioDetalhadoResponse getBeneficiarioAtravesId(Long idBeneficiario) {
+            log.info("[inicia] BeneficiarioController - getBeneficiarioAtravesId");
+            log.debug("[idBeneficiario] {}", idBeneficiario);
+        BeneficiarioDetalhadoResponse beneficiarioDetalhado = beneficiarioService.buscaBeneficiariosAtravesId(idBeneficiario);
+        log.info("[finaliza] BeneficiarioController - getBeneficiarioAtravesId");
+        return beneficiarioDetalhado;
+        }
+
+    @Override
     public void deletaBeneficiarioById(Long idBeneficiario) {
         log.info("[inicia] BeneficiarioController - deletaBeneficiarioById");
         log.info("[idBeneficiario] {}", idBeneficiario);
