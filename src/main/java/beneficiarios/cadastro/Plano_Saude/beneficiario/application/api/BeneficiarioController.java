@@ -1,6 +1,7 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.application.api;
 
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.service.BeneficiarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,14 @@ public class BeneficiarioController implements BeneficiarioAPI{
         log.info("[idBeneficiario] {}", idBeneficiario);
         beneficiarioService.deletaBeneficiarioById(idBeneficiario);
         log.info("[finaliza] BeneficiarioController - deletaBeneficiarioById");
+
+    }
+
+    @Override
+    public void patchAtualizaBeneficiario(Long idBeneficiario, @Valid BeneficiarioAtualizacaoRequest beneficiarioAtualizacaoRequest) {
+        log.info("[inicia] BeneficiarioController - patchAtualizaBeneficiario");
+        log.info("[idBeneficiario] {}", idBeneficiario);
+        log.info("[finaliza] BeneficiarioController - patchAtualizaBeneficiario");
 
     }
 }
