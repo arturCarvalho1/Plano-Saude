@@ -17,4 +17,9 @@ public interface BeneficiarioAPI {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<BeneficiarioListResponse> getTodosbeneficiarios();
+    
+    @DeleteMapping(value = "/{idBeneficiario}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deletaBeneficiarioById(@PathVariable Long idBeneficiario);
+
 }

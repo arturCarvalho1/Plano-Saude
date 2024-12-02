@@ -28,4 +28,12 @@ public class BeneficiarioController implements BeneficiarioAPI{
         log.info("[finaliza] BeneficiarioController - getTodosbeneficiarios");
         return beneficiarios;
     }
+
+    @Override
+    public void deletaBeneficiarioById(Long idBeneficiario) {
+        log.info("[inicia] BeneficiarioController - deletaBeneficiarioById");
+        log.info("[idBeneficiario] {}", idBeneficiario);
+        log.info("[finaliza] BeneficiarioController - deletaBeneficiarioById");
+
+    }
 }
