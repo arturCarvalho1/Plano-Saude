@@ -33,6 +33,7 @@ public class BeneficiarioController implements BeneficiarioAPI{
     public void deletaBeneficiarioById(Long idBeneficiario) {
         log.info("[inicia] BeneficiarioController - deletaBeneficiarioById");
         log.info("[idBeneficiario] {}", idBeneficiario);
+        beneficiarioService.deletaBeneficiarioById(idBeneficiario);
         log.info("[finaliza] BeneficiarioController - deletaBeneficiarioById");
 
     }

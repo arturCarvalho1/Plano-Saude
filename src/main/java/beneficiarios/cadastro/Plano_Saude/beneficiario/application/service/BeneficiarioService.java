@@ -11,4 +11,5 @@ import java.util.List;
 public interface BeneficiarioService {
     BeneficiarioResponse criaBeneficiario(BeneficiarioRequest beneficiarioRequest);
     List<BeneficiarioListResponse> buscaTodosBeneficiarios();
+    void deletaBeneficiarioById(Long idBeneficiario);
 }

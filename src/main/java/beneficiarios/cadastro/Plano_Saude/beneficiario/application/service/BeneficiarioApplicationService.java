@@ -51,4 +51,12 @@ public class BeneficiarioApplicationService implements BeneficiarioService {
         log.info("[finaliza] BeneficiarioApplicationService - buscaTodosBeneficiarios ");
         return BeneficiarioListResponse.converte(beneficiarios);
     }
+
+    @Override
+    public void deletaBeneficiarioById(Long idBeneficiario) {
+        log.info("[inicia] BeneficiarioApplicationService - deletaBeneficiarioById");
+//        beneficiarioRepository.deletaBeneficiario(idBeneficiario);
+        log.info("[finaliza] BeneficiarioApplicationService - deletaBeneficiarioById");
+
+    }
 }
