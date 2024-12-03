@@ -8,9 +8,9 @@ import java.util.List;
 
 @Service
 public interface BeneficiarioService {
+    void patchAlteraDadosBeneficiario(Long idBeneficiario,Long idDocumento,BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest );
     BeneficiarioResponse criaBeneficiario(BeneficiarioRequest beneficiarioRequest);
     List<BeneficiarioListResponse> buscaTodosBeneficiarios();
     BeneficiarioDetalhadoResponse buscaBeneficiariosAtravesId(Long idBeneficiario);
     void deletaBeneficiarioById(Long idBeneficiario);
-    void patchAlteraBeneficiario(Long idBeneficiario, BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest );
 }

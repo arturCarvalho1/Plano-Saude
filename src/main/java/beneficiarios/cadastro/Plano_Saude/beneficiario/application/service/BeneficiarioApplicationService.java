@@ -5,6 +5,7 @@ import beneficiarios.cadastro.Plano_Saude.beneficiario.application.repository.Be
 import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
 import beneficiarios.cadastro.Plano_Saude.documento.application.repository.DocumentoRepository;
 import beneficiarios.cadastro.Plano_Saude.documento.domain.Documento;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -26,29 +27,27 @@ public class BeneficiarioApplicationService implements BeneficiarioService {
     @Transactional
     public BeneficiarioResponse criaBeneficiario(BeneficiarioRequest beneficiarioRequest) {
         log.info("[inicia] BeneficiarioApplicationService - criaBeneficiario");
-        // Criando e salvando o beneficiário
         Beneficiario beneficiario = new Beneficiario(beneficiarioRequest);
-        beneficiario.setDataInclusao(Timestamp.valueOf(LocalDateTime.now()));
-        beneficiario.setDataAtualizacao(Timestamp.valueOf(LocalDateTime.now()));
         Beneficiario beneficiarioSalvo = beneficiarioRepository.salva(beneficiario);
-        // Verificando se existe um documento e associando ao beneficiário
         if (beneficiarioRequest.getDocumentoRequest() != null) {
             Documento documento = new Documento(beneficiarioRequest.getDocumentoRequest());
-            documento.setBeneficiario(beneficiarioSalvo);  // Associação do beneficiário com documento
-            documentoRepository.salva(documento);
+            documento.setBeneficiario(beneficiario);
+            beneficiario.adicionarDocumento(documento);
         }
         log.info("[finaliza] BeneficiarioApplicationService - criaBeneficiario");
         return BeneficiarioResponse.builder()
                 .idBeneficiario(beneficiarioSalvo.getIdBeneficiario())
                 .build();
     }
+
     @Override
     public List<BeneficiarioListResponse> buscaTodosBeneficiarios() {
         log.info("[inicia] BeneficiarioApplicationService - buscaTodosBeneficiarios ");
-        List<Beneficiario>  beneficiarios = beneficiarioRepository.listaTodosBeneficiarios();
+        List<Beneficiario> beneficiarios = beneficiarioRepository.listaTodosBeneficiarios();
         log.info("[finaliza] BeneficiarioApplicationService - buscaTodosBeneficiarios ");
         return BeneficiarioListResponse.converte(beneficiarios);
     }
+
     @Override
     public BeneficiarioDetalhadoResponse buscaBeneficiariosAtravesId(Long idBeneficiario) {
         log.info("[inicia] BeneficiarioApplicationService - buscaBeneficiariosAtravesId");
@@ -56,6 +55,7 @@ public class BeneficiarioApplicationService implements BeneficiarioService {
         log.info("[finaliza] BeneficiarioApplicationService - buscaBeneficiariosAtravesId");
         return new BeneficiarioDetalhadoResponse(beneficiario);
     }
+
     @Override
     public void deletaBeneficiarioById(Long idBeneficiario) {
         log.info("[inicia] BeneficiarioApplicationService - deletaBeneficiarioById");
@@ -65,11 +65,15 @@ public class BeneficiarioApplicationService implements BeneficiarioService {
     }
 
     @Override
-    public void patchAlteraBeneficiario(Long idBeneficiario, BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
-        log.info("[inicia] BeneficiarioApplicationService - patchAlteraBeneficiario");
+    public void patchAlteraDadosBeneficiario(Long idBeneficiario,Long idDocumento,BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
+        log.info("[inicia] BeneficiarioApplicationService - patchAlteraDadosBeneficiario");
         Beneficiario beneficiario = beneficiarioRepository.buscaBeneficiarioAtravesId(idBeneficiario);
         beneficiario.altera(beneficiarioAlteracaoRequest);
         beneficiarioRepository.salva(beneficiario);
-        log.info("[finaliza] BeneficiarioApplicationService - patchAlteraBeneficiario");
+        Documento documento = new Documento(beneficiarioAlteracaoRequest.getDocumentoRequest());
+        documento.setBeneficiario(beneficiario);
+        documento.altera(beneficiarioAlteracaoRequest);
+        documentoRepository.salva(documento);
+        log.info("[finaliza] BeneficiarioApplicationService - patchAlteraDadosBeneficiario");
     }
 }

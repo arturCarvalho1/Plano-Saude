@@ -8,9 +8,6 @@ import lombok.Value;
 public class DocumentoRequest {
     Long idDocumento;
     String tipoDocumento;
-
     Beneficiario beneficiario;
-
-    @NotBlank
     String descricao;
 }
