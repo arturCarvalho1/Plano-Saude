@@ -19,7 +19,7 @@ A API oferece as seguintes ultilidades:
 
   
 
-## Tech 
+## Tecnologia 
 - java
 - SpringBoot
     - Spring Web
