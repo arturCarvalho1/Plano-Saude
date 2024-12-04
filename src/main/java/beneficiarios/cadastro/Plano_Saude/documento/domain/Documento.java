@@ -1,5 +1,6 @@
 package beneficiarios.cadastro.Plano_Saude.documento.domain;
 
+import beneficiarios.cadastro.Plano_Saude.beneficiario.application.api.BeneficiarioAlteracaoRequest;
 import beneficiarios.cadastro.Plano_Saude.beneficiario.domain.Beneficiario;
 import beneficiarios.cadastro.Plano_Saude.documento.application.api.DocumentoRequest;
 import jakarta.persistence.*;
@@ -18,7 +19,6 @@ public class Documento {
     @Column(name = "idDocumento", unique = true, nullable = false)
     private Long idDocumento;
     private String tipoDocumento;
-    @NotBlank
     private String descricao;
 
     private LocalDateTime dataInclusao;
@@ -43,6 +43,12 @@ public class Documento {
     }
     @PreUpdate
     public void preUpdate() {
+        this.dataAtualizacao = LocalDateTime.now();
+    }
+
+    public void altera(BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
+        this.descricao = beneficiarioAlteracaoRequest.getDescricao();
+        this.tipoDocumento = beneficiarioAlteracaoRequest.getTipoDocumento();
         this.dataAtualizacao = LocalDateTime.now();
     }
 }

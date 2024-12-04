@@ -17,4 +17,18 @@ public interface BeneficiarioAPI {
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
     List<BeneficiarioListResponse> getTodosbeneficiarios();
+
+    @GetMapping(value = "/{idBeneficiario}")
+    @ResponseStatus(code = HttpStatus.OK)
+    BeneficiarioDetalhadoResponse getBeneficiarioAtravesId(@PathVariable Long idBeneficiario);
+
+    @DeleteMapping(value = "/{idBeneficiario}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deletaBeneficiarioById(@PathVariable Long idBeneficiario);
+
+    @PatchMapping(value = "/{idBeneficiario}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void patchAlteraDadosBeneficiario(@PathVariable Long idBeneficiario,
+            @RequestBody @Valid BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest);
+
 }

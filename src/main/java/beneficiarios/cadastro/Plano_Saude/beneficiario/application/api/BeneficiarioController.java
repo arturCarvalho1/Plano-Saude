@@ -1,6 +1,7 @@
 package beneficiarios.cadastro.Plano_Saude.beneficiario.application.api;
 
 import beneficiarios.cadastro.Plano_Saude.beneficiario.application.service.BeneficiarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +28,31 @@ public class BeneficiarioController implements BeneficiarioAPI{
         List<BeneficiarioListResponse> beneficiarios = beneficiarioService.buscaTodosBeneficiarios();
         log.info("[finaliza] BeneficiarioController - getTodosbeneficiarios");
         return beneficiarios;
+    }
+
+    @Override
+    public BeneficiarioDetalhadoResponse getBeneficiarioAtravesId(Long idBeneficiario) {
+            log.info("[inicia] BeneficiarioController - getBeneficiarioAtravesId");
+            log.debug("[idBeneficiario] {}", idBeneficiario);
+        BeneficiarioDetalhadoResponse beneficiarioDetalhado = beneficiarioService.buscaBeneficiariosAtravesId(idBeneficiario);
+        log.info("[finaliza] BeneficiarioController - getBeneficiarioAtravesId");
+        return beneficiarioDetalhado;
+        }
+
+    @Override
+    public void deletaBeneficiarioById(Long idBeneficiario) {
+        log.info("[inicia] BeneficiarioController - deletaBeneficiarioById");
+        log.info("[idBeneficiario] {}", idBeneficiario);
+        beneficiarioService.deletaBeneficiarioById(idBeneficiario);
+        log.info("[finaliza] BeneficiarioController - deletaBeneficiarioById");
+
+    }
+
+    @Override
+    public void patchAlteraDadosBeneficiario(Long idBeneficiario,BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
+        log.info("[inicia] BeneficiarioController - patchAtualizaBeneficiario");
+        log.info("[idBeneficiario] {}", idBeneficiario);
+        beneficiarioService.patchAlteraDadosBeneficiario(idBeneficiario,beneficiarioAlteracaoRequest);
+        log.info("[finaliza] BeneficiarioController - patchAtualizaBeneficiario");
     }
 }
