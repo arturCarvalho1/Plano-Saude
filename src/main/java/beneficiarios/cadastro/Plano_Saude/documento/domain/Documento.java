@@ -48,7 +48,6 @@ public class Documento {
 
     public void altera(BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
         this.descricao = beneficiarioAlteracaoRequest.getDescricao();
-        this.idDocumento = beneficiarioAlteracaoRequest.getIdDocumento();
         this.tipoDocumento = beneficiarioAlteracaoRequest.getTipoDocumento();
         this.dataAtualizacao = LocalDateTime.now();
     }
