@@ -64,15 +64,11 @@ public class BeneficiarioApplicationService implements BeneficiarioService {
         log.info("[finaliza] BeneficiarioApplicationService - deletaBeneficiarioById");
     }
 
-    public void patchAlteraDadosBeneficiario(Long idBeneficiario, Long idDocumento, BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
+    public void patchAlteraDadosBeneficiario(Long idBeneficiario,BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest) {
         log.info("[inicia] BeneficiarioApplicationService - patchAlteraDadosBeneficiario");
         Beneficiario beneficiario = beneficiarioRepository.buscaBeneficiarioAtravesId(idBeneficiario);
         beneficiario.altera(beneficiarioAlteracaoRequest);
         beneficiarioRepository.salva(beneficiario);
-        Documento documento = documentoRepository.buscaDocumentoAtravesIdBeneficiario(idDocumento);
-        documento.setBeneficiario(beneficiario);
-        documento.altera(beneficiarioAlteracaoRequest);
-        documentoRepository.salva(documento);
         log.info("[finaliza] BeneficiarioApplicationService - patchAlteraDadosBeneficiario");
     }
 }

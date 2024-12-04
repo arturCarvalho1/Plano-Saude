@@ -26,9 +26,9 @@ public interface BeneficiarioAPI {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void deletaBeneficiarioById(@PathVariable Long idBeneficiario);
 
-    @PatchMapping(value = "/{idBeneficiario}/{idDocumento}")
+    @PatchMapping(value = "/{idBeneficiario}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void patchAlteraDadosBeneficiario(@PathVariable Long idBeneficiario,@PathVariable Long idDocumento,
+    void patchAlteraDadosBeneficiario(@PathVariable Long idBeneficiario,
             @RequestBody @Valid BeneficiarioAlteracaoRequest beneficiarioAlteracaoRequest);
 
 }
