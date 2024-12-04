@@ -37,4 +37,3 @@ A API oferece as seguintes ultilidades:
 
 ## 🤝 **Contribuições**
  #### Contribuições são bem-vindas!
-
